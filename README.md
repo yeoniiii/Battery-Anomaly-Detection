@@ -1,2 +1,1 @@
-# MLOps-BatteryAnomalyDetection
-[MLOps Project] Battery Anomaly Detection
+# [MLOps Prj] Battery Anomaly Detection
