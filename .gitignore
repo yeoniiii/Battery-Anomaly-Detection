@@ -1,1 +1,5 @@
 Dataset
+.gitignore
+Dashboard/__pycache__/
+Dashboard/libraries/__pycache__/
+*.pyc
