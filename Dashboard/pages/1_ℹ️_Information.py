@@ -5,7 +5,8 @@ st.set_page_config(
     page_icon="ℹ️",
 )
 
-st.markdown("# 배터리팩 가이드")
+st.sidebar.info("✅ Check out our Battery Pack Information")
+st.markdown("# 배터리팩 안내")
 tab1, tab2, tab3 = st.tabs(["🔋 충∙방전 시험", "🪫 불량품 유형", "🔎 불량품 탐지"])
 
 
