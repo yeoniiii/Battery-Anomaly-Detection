@@ -4,3 +4,4 @@ Dataset/raw_data/train
 Dashboard/__pycache__/
 Dashboard/libraries/__pycache__/
 *.pyc
+score.csv
