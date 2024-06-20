@@ -49,7 +49,7 @@ with tab1:
         
         if button_start:
             st.session_state.test_running = True
-            command = ["python3", "../Modeling/run.py", str(slider_value)]
+            command = ["python3", "./Modeling/run.py", str(slider_value)]
             test = subprocess.Popen(command)
 
             sidebar_before.empty()
@@ -86,7 +86,7 @@ with tab2:
         with st.container(border=True):
             st.write(f"#### {slider_value}번 배터리팩 충∙방전 시험 차트")
 
-            folder_dir = '../Dataset/data/raw_data/test'
+            folder_dir = './Dataset/data/raw_data/test'
             files = os.listdir(folder_dir)
             file = [f for f in files if str(slider_value) in f]
             file_dir = os.path.join(folder_dir, file[0])

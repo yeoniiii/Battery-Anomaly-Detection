@@ -19,6 +19,5 @@ st.markdown(
     """
 )
 
-os.chdir('./Dashboard')
 if check_score():
-    os.remove('./score.csv')
+    os.remove('./Dashboard/score.csv')
