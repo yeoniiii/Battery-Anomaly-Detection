@@ -5,6 +5,7 @@ import matplotlib.dates as mdates
 import subprocess
 import time
 import os
+from libraries.load_data import load_df
 
 
 st.set_page_config(
@@ -91,7 +92,7 @@ with tab2:
             file = [f for f in files if str(slider_value) in f]
             file_dir = os.path.join(folder_dir, file[0])
 
-            data = pd.read_csv(file_dir)
+            data = load_df(file_dir)
 
             placeholder = st.empty()
 

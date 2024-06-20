@@ -1,4 +1,5 @@
 import streamlit as st
+from libraries.load_data import load_img
 
 st.set_page_config(
     page_title="Guides",
@@ -33,10 +34,45 @@ with tab1:
                 -  **‼️  지속 가능한 라이프사이클 관리**  
                     BMS 기반 제조데이터 수집 및 저장 체계에 기반한 배터리팩 공정의 라이프사이클을 효과적으로 관리할 수 있게 됩니다.
                 """)
+    
         
 with tab2:
     st.header("Battery Pack Defective Types")
 
+
+
 with tab3:
     st.header("Battery Pack Anomaly Detection")
     
+    with st.container(border=True):
+
+        col1, col2 = st.columns([0.4, 0.6])
+
+        with col1:
+            tadgan_img = load_img('tadgan')
+            st.image(tadgan_img)
+
+        with col2:
+            st.write("""
+                     #### TadGAN
+                     ###### 시계열 기반 비지도 학습 모델
+                     - 학습 데이터에 양/불 여부에 대한 정보가 존재하지 않으므로, 비지도 학습 기반의 시계열 분석 모델인 TadGAN 활용  
+                     - 양품 배터리팩 데이터 분포를 학습 후 생성된 불량품 데이터를 판별할 수 있도록 훈련
+                     
+            """)
+
+    with st.container(border=True):
+        col1, col2 = st.columns([0.4, 0.6])
+
+        with col1:
+            st.write("""
+                     #### MLOps Pipeline
+                     ###### 모델 구축 및 운영, 배포
+                     - 운영계와 개발계로 분리하여 MLOps 파이프라인 구축  
+                     - 개발계에서 불량 데이터 검출 모델 학습, 적절한 성능을 보일 경우 운영계로 배포 시작
+                     
+            """)
+
+        with col2:
+            mlops_img = load_img('mlops')
+            st.image(mlops_img)
