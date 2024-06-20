@@ -5,7 +5,7 @@ import time
 serial_num = sys.argv[1]
 def calculate_score(serial_num):
     df = pd.DataFrame({'i':[serial_num], 'score':[100]})
-    df.to_csv('score.csv', index=False)
+    df.to_csv('./Dashboard/score.csv', index=False)
     return df
 
 time.sleep(5)

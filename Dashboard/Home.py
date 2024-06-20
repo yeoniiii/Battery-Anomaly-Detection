@@ -12,11 +12,11 @@ st.sidebar.info("""
     👋 Welcome to Battery Pack Test Dashboard!
 """)
 
-img = Image.open('./images/home_img.jpg')
+img = Image.open('./Dashboard/images/home_img.jpg')
 st.image(img)
 
 if check_score():
-    os.remove('./score.csv')
+    os.remove('./Dashboard/score.csv')
 
 
 st.title('배터리팩 불량품 탐지 대시보드')
