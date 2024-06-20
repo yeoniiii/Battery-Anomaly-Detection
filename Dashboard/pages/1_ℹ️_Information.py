@@ -58,21 +58,19 @@ with tab3:
                      ###### 시계열 기반 비지도 학습 모델
                      - 학습 데이터에 양/불 여부에 대한 정보가 존재하지 않으므로, 비지도 학습 기반의 시계열 분석 모델인 TadGAN 활용  
                      - 양품 배터리팩 데이터 분포를 학습 후 생성된 불량품 데이터를 판별할 수 있도록 훈련
-                     
             """)
 
     with st.container(border=True):
-        col1, col2 = st.columns([0.4, 0.6])
+        col3, col4 = st.columns([0.4, 0.6])
 
-        with col1:
+        with col3:
             st.write("""
                      #### MLOps Pipeline
                      ###### 모델 구축 및 운영, 배포
                      - 운영계와 개발계로 분리하여 MLOps 파이프라인 구축  
                      - 개발계에서 불량 데이터 검출 모델 학습, 적절한 성능을 보일 경우 운영계로 배포 시작
-                     
             """)
 
-        with col2:
+        with col4:
             mlops_img = load_img('mlops')
             st.image(mlops_img)
