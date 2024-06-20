@@ -1,6 +1,7 @@
-Dataset/AASX 및 변환파일
-Dataset/preprocessed
-Dataset/raw_data/train
+Dataset/AASX 및 변환파일/
+Dataset/data/preprocessed/
+Dataset/data/raw_data/train/
 Dashboard/__pycache__/
 Dashboard/libraries/__pycache__/
 *.pyc
+score.csv
