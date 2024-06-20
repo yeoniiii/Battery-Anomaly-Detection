@@ -45,8 +45,8 @@ with tab2:
     NG6 = load_test_df(6)
     NG7 = load_test_df(7)
 
-    col1, col2 = st.columns(2)
-    with col1:
+    col21, col22 = st.columns(2)
+    with col21:
         with st.container(border=True):
             st.write("#### 1️⃣ 용량 불량")
             type1 = NG5.iloc[800:2500, 23:199]
@@ -91,7 +91,7 @@ with tab2:
                     """)
             
 
-    with col2:
+    with col22:
         with st.container(border=True):
             st.write("#### 2️⃣ 용접 불량")
             type2 = NG5.iloc[:1000, 23:199]
