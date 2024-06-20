@@ -6,6 +6,7 @@ from libraries.check_output import check_score
 st.set_page_config(
     page_title="Home",
     page_icon="🏠",
+    layout = "wide"
 )
 
 st.sidebar.info("""

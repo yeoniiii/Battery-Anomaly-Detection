@@ -6,6 +6,7 @@ from libraries.check_output import check_score
 st.set_page_config(
     page_title="Results",
     page_icon="🔋",
+    layout = "wide"
 )
 
 st.markdown("# 배터리팩 이상치 탐지 결과")

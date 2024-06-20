@@ -5,7 +5,7 @@ import matplotlib.dates as mdates
 import subprocess
 import time
 import os
-from libraries.load_data import load_df
+from libraries.load_data import load_test_df
 
 
 st.set_page_config(
@@ -86,13 +86,7 @@ with tab2:
     else:
         with st.container(border=True):
             st.write(f"#### {slider_value}번 배터리팩 충∙방전 시험 차트")
-
-            folder_dir = './Dataset/data/raw_data/test'
-            files = os.listdir(folder_dir)
-            file = [f for f in files if str(slider_value) in f]
-            file_dir = os.path.join(folder_dir, file[0])
-
-            data = load_df(file_dir)
+            data = load_test_df(slider_value)
 
             placeholder = st.empty()
 
