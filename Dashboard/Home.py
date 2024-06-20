@@ -18,7 +18,6 @@ st.markdown(
     전기차용 배터리팩 충∙방전
     """
 )
-st.write(os.getcwd())
 
 if check_score():
-    os.remove('./Dashboard/score.csv')
+    os.remove('./score.csv')
