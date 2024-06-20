@@ -12,7 +12,13 @@ st.sidebar.info("""
     👋 Welcome to Battery Pack Test Dashboard!
 """)
 
-img = Image.open('./Dashboard/images/home_img.jpg')
+@st.cache()
+def load_img(img_dir):
+    return Image.open(img_dir)
+
+home_img_dir = './Dashboard/images/home_img.jpg'
+img = Image.open(home_img_dir)
+
 st.image(img)
 
 if check_score():
