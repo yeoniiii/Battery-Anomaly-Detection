@@ -78,7 +78,7 @@ with tab1:
             
 
 with tab2:
-    st.header("Real-time Battery Pack Chart")
+    st.header("Battery Pack Test Progress Chart")
     if not button_start:
             st.warning("이전 탭에서 시험을 시작해주세요.")
 
@@ -139,4 +139,4 @@ with tab2:
                         plt.ylim(min(TE.min() * 0.9), max(TE.max()) * 1.1)
                         st.pyplot(fig2)
 
-                    time.sleep(1)
+                    time.sleep(.5)
