@@ -13,6 +13,6 @@ st.markdown("# 배터리팩 이상치 탐지 결과")
 if not check_score():
     st.warning("이전 페이지에서 시험을 시작해주세요.")
 else:
-    file_dir = os.path.join(os.getcwd(), 'score.csv')
+    file_dir = os.path.join(os.getcwd(), 'Dashboard/score.csv')
     data = pd.read_csv(file_dir)
     st.write('yeah!')
