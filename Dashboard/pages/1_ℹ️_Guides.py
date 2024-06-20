@@ -5,16 +5,6 @@ st.set_page_config(
     page_icon="ℹ️",
 )
 
-
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import subprocess
-import time
-import os
-
-
 st.markdown("# 배터리팩 가이드")
 tab1, tab2, tab3 = st.tabs(["🔋 충∙방전 시험", "🪫 불량품 유형", "🔎 불량품 탐지"])
 
