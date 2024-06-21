@@ -36,5 +36,5 @@ st.markdown("""
             </small></p>""", unsafe_allow_html=True)
 st.caption("")
 
-if check_score():
-    os.remove('./Dashboard/results/score.csv')
+# if check_score():
+#     os.remove('./Dashboard/results/score.csv')
