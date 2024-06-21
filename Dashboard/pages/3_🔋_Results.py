@@ -9,10 +9,7 @@ st.set_page_config(
 import pandas as pd
 import os
 from libraries.check_output import check_score
-<<<<<<< HEAD
 import plotly.express as px
-=======
->>>>>>> 492fb3d7ca148173f0430df3c415523bdcf31f83
 
 
 

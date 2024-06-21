@@ -37,8 +37,4 @@ st.markdown("""
 st.caption("")
 
 if check_score():
-<<<<<<< HEAD
     os.remove('./Dashboard/results/score.csv')
-=======
-    os.remove('./Dashboard/score.csv')
->>>>>>> 492fb3d7ca148173f0430df3c415523bdcf31f83
