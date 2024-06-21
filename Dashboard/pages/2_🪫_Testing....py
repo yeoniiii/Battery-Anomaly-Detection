@@ -1,4 +1,11 @@
 import streamlit as st
+
+st.set_page_config(
+    page_title="Testing...",
+    page_icon="🪫",
+    layout = "wide"
+)
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -8,10 +15,6 @@ import os
 from libraries.load_data import load_test_df
 
 
-st.set_page_config(
-    page_title="Testing...",
-    page_icon="🪫",
-)
 
 st.markdown("# 배터리팩 충∙방전 시험")
 tab1, tab2 = st.tabs(["⚙️ 시험 세팅", "🔎 시험 진행 상황"])
@@ -19,6 +22,7 @@ tab1, tab2 = st.tabs(["⚙️ 시험 세팅", "🔎 시험 진행 상황"])
 
 with tab1:
     st.header("Battery Pack Test Settings")
+    st.caption("💁 배터리 충∙방전 시험 세팅 화면입니다.")
 
     if 'test_running' not in st.session_state:
         st.session_state.test_running = False
@@ -80,6 +84,8 @@ with tab1:
 
 with tab2:
     st.header("Battery Pack Test Progress Chart")
+    st.caption("💁 배터리팩 충∙방전 시험 진행 상황에 대한 차트입니다.")
+    
     if not button_start:
             st.warning("이전 탭에서 시험을 시작해주세요.")
 
@@ -90,11 +96,11 @@ with tab2:
 
             placeholder = st.empty()
 
-            for seconds in range(len(data)//10):
+            for seconds in range(len(data)//100):
                 if not st.session_state.test_running and not st.session_state.test_finished:
                     break
 
-                df = data.iloc[:10 * (seconds + 1), :]  
+                df = data.iloc[:100 * (seconds + 1), :]  
 
                 with placeholder.container():
                     plot1, plot2 = st.columns(2)
@@ -134,4 +140,4 @@ with tab2:
                         plt.ylim(min(TE.min() * 0.9), max(TE.max()) * 1.1)
                         st.pyplot(fig2)
 
-                    time.sleep(.5)
+                    time.sleep(.1)

@@ -1,30 +1,23 @@
 import streamlit as st
-import os
-from PIL import Image
-from libraries.check_output import check_score
 
 st.set_page_config(
     page_title="Home",
-    page_icon="🏠",
-    layout = "wide"
+    page_icon="🏠"
 )
+
+import os
+from PIL import Image
+from libraries.check_output import check_score
+from libraries.load_data import load_img
+
+
 
 st.sidebar.info("""
     👋 Welcome to Battery Pack Test Dashboard!
 """)
 
-@st.cache()
-def load_img(img_dir):
-    return Image.open(img_dir)
-
-home_img_dir = './Dashboard/images/home_img.jpg'
-img = Image.open(home_img_dir)
-
-st.image(img)
-
-if check_score():
-    os.remove('./Dashboard/score.csv')
-
+home_img = load_img('home')
+st.image(home_img)
 
 st.title('배터리팩 불량품 탐지 대시보드')
 
@@ -42,3 +35,6 @@ st.markdown("""
             고려대학교 일반대학원 통계학과 <br> 고정현 김아롬 김혜연 이다경
             </small></p>""", unsafe_allow_html=True)
 st.caption("")
+
+if check_score():
+    os.remove('./Dashboard/results/score.csv')
