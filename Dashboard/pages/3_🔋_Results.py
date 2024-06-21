@@ -1,13 +1,16 @@
 import streamlit as st
-import pandas as pd
-import os
-from libraries.check_output import check_score
 
 st.set_page_config(
     page_title="Results",
     page_icon="🔋",
     layout = "wide"
 )
+
+import pandas as pd
+import os
+from libraries.check_output import check_score
+
+
 
 st.markdown("# 배터리팩 이상치 탐지 결과")
 

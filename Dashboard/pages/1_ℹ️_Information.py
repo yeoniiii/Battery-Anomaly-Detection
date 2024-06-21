@@ -1,13 +1,15 @@
 import streamlit as st
-import pandas as pd
-import altair as alt
-from libraries.load_data import *
 
 st.set_page_config(
-    page_title="Guides",
+    page_title="Info",
     page_icon="ℹ️",
     layout = "wide"
 )
+
+from libraries.load_data import *
+from libraries.plotting import plot_defective
+
+
 
 st.sidebar.info("✅ Check out our Battery Pack Information")
 st.markdown("# 배터리팩 안내")
@@ -16,6 +18,7 @@ tab1, tab2, tab3 = st.tabs(["🔋 충∙방전 시험", "🪫 불량품 유형",
 
 with tab1:
     st.header("Battery Pack Test")
+    st.caption("💁 배터리팩 충∙방전 시험에 대한 설명입니다.")
     with st.container(border=True):
         st.write("""
                 #### 배터리팩 충∙방전 시험
@@ -41,104 +44,56 @@ with tab1:
         
 with tab2:
     st.header("Battery Pack Defective Types")
-    NG5 = load_test_df(5)
-    NG6 = load_test_df(6)
-    NG7 = load_test_df(7)
+    st.caption("💁 배터리팩 불량품 유형에 대한 설명과 예시 차트입니다.")
+
+    fig1 = plot_defective(1)
+    fig2 = plot_defective(2)
+    fig3 = plot_defective(3)
+    fig4 = plot_defective(4)
 
     col21, col22 = st.columns(2)
     with col21:
         with st.container(border=True):
             st.write("#### 1️⃣ 용량 불량")
-            type1 = NG5.iloc[800:2500, 23:199]
-            type1['time'] = pd.to_datetime(NG5.iloc[800:2500, 1])
-            type1 = pd.melt(type1, id_vars=['time'], var_name='Column', value_name='Voltage')
-
-            chart1 = (
-                alt.Chart(type1)
-                .mark_line()
-                .encode(
-                    x = alt.X("time"),
-                    y = alt.Y("Voltage", scale=alt.Scale(domain=[3.6, 3.85])),
-                    color = alt.Color("Column", legend=None)
-                )
-            )
-            st.altair_chart(chart1)
-
+            st.plotly_chart(fig1)
             st.write("""
-                    충·방전 시험 과정에서 특정 배터리셀에서 급격하게 전압이 상승/하강하는 구간이 발견된다. 충전의 경우 초기에 비슷하게 출발하나 충전이 완료된 후 비교해 보면 그 차이가 뚜렷하다. 하지만 배터리모듈 간의 평균 전압 차이도 고려해야 하기 때문에 불량 판정 시 경계성 판단이 요구되므로 전문가 검토가 필수적이다.
+                     충·방전 시험 과정에서 특정 배터리셀에서 급격하게 전압이 상승/하강하는 구간이 발견된다.
+                     충전의 경우 초기에 비슷하게 출발하나 충전이 완료된 후 비교해 보면 그 차이가 뚜렷하다.
+                     하지만 배터리모듈 간의 평균 전압 차이도 고려해야 하기 때문에 불량 판정 시 경계성 판단이 요구되므로 전문가 검토가 필수적이다.
                     """)
-            
 
         with st.container(border=True):
             st.write("#### 3️⃣ 센싱 와이어 불량")
-            type3 = NG7.iloc[4000:, 23:199]
-            type3['time'] = pd.to_datetime(NG7.iloc[4000:, 1])
-            type3 = pd.melt(type3, id_vars=['time'], var_name='Column', value_name='Voltage')
-
-            chart3 = (
-                alt.Chart(type3)
-                .mark_line()
-                .encode(
-                    x = alt.X("time"),
-                    y = alt.Y("Voltage", scale=alt.Scale(domain=[3, 4.4])),
-                    color = alt.Color("Column", legend=None)
-                )
-            )
-            st.altair_chart(chart3)
-
+            st.plotly_chart(fig3)
             st.write("""
-                    배터리모듈을 구성하는 배터리셀들의 온도나 전압을 측정하기 위해 센싱와이어로 서로 연결되어있다. 와이어에서 불량이 발생하는 경우 인접한 배터리셀들의 전압에 차이가 발생하게 된다.
+                     배터리모듈을 구성하는 배터리셀들의 온도나 전압을 측정하기 위해 센싱와이어로 서로 연결되어있다. 
+                     와이어에서 불량이 발생하는 경우 인접한 배터리셀들의 전압에 차이가 발생하게 된다.
                     """)
             
-
     with col22:
         with st.container(border=True):
             st.write("#### 2️⃣ 용접 불량")
-            type2 = NG5.iloc[:1000, 23:199]
-            type2['time'] = pd.to_datetime(NG5.iloc[:1000, 1])
-            type2 = pd.melt(type2, id_vars=['time'], var_name='Column', value_name='Voltage')
-
-            chart2 = (
-                alt.Chart(type2)
-                .mark_line()
-                .encode(
-                    x = alt.X("time"),
-                    y = alt.Y("Voltage", scale=alt.Scale(domain=[3.62, 3.73])),
-                    color = alt.Color("Column", legend=None)
-                )
-            )
-            st.altair_chart(chart2)
-
+            st.plotly_chart(fig2)
             st.write("""
-                    입고 검사 과정에서 통과된 배터리셀들은 배터리모듈의 형태로 조립되어 용접이 진행된다. 용접한 부위는 외관상 문제가 없어 보이더라도 특정 배터리셀에서 전압이 측정되지 않거나 배터리셀 전체 전압이 떨어져 있는 현상이 나타날 수 있는데, 이 경우 용접불량을 의심해봐야 한다.
+                     입고 검사 과정에서 통과된 배터리셀들은 배터리모듈의 형태로 조립되어 용접이 진행된다. 
+                     용접한 부위는 외관상 문제가 없어 보이더라도 특정 배터리셀에서 전압이 측정되지 않거나 
+                     배터리셀 전체 전압이 떨어져 있는 현상이 나타날 수 있는데, 이 경우 용접불량을 의심해봐야 한다.
                     """)
-
 
         with st.container(border=True):
             st.write("#### 4️⃣ 센서 불량")
-            type4 = NG6.iloc[:, 199:231]
-            type4['time'] = pd.to_datetime(NG6.iloc[:, 1])
-            type4 = pd.melt(type4, id_vars=['time'], var_name='Column', value_name='Temperature')
-
-            chart4 = (
-                alt.Chart(type4)
-                .mark_line()
-                .encode(
-                    x = alt.X("time"),
-                    y = alt.Y("Temperature", scale=alt.Scale(domain=[23, 28])),
-                    color = alt.Color("Column", legend=None)
-                )
-            )
-            st.altair_chart(chart4)
-
+            st.plotly_chart(fig4)
             st.write("""
-                    배터리모듈에 장착된 온도센서의 측정값이 너무 높거나 낮게 출력되는 경우 센서불량을 의심해야 한다. 일반적으로 센서를 교체하면 해당 문제를 해결 할 수 있으나 간혹 배터리모듈에 장착된 BMS의 파라미터 설정이 잘못되어 값이 이상하게 측정될 수 있으므로 양측 점검이 필요하다.
+                     배터리모듈에 장착된 온도센서의 측정값이 너무 높거나 낮게 출력되는 경우 센서불량을 의심해야 한다. 
+                     일반적으로 센서를 교체하면 해당 문제를 해결 할 수 있으나 간혹 배터리모듈에 장착된 BMS의 파라미터 설정이 잘못되어 
+                     값이 이상하게 측정될 수 있으므로 양측 점검이 필요하다.
                     """)
 
 
 
 with tab3:
     st.header("Battery Pack Anomaly Detection")
+    st.caption("💁 배터리팩 불량품 탐지 모델링에 대한 설명입니다.")
     
     with st.container(border=True):
 
