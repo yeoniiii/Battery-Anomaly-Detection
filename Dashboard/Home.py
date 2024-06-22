@@ -39,4 +39,4 @@ st.markdown("""
 st.caption("")
 
 if check_score():
-    os.remove('./Dashboard/results/result.csv')
+    os.remove('./Dashboard/result.csv')

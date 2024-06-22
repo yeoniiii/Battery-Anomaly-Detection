@@ -20,7 +20,7 @@ st.markdown("# 배터리팩 이상치 탐지 결과")
 if not check_score():
     st.warning("이전 페이지에서 시험을 시작해주세요.")
 else:
-    result_dir = os.getcwd() + '/Dashboard/results/result.csv'
+    result_dir = os.getcwd() + '/Dashboard/result.csv'
     result = pd.read_csv(result_dir)
     result['pred'] = result['pred'].map({0: '양품', 1: '불량품'})
     result.rename(columns={'Unnamed: 0':'idx'}, inplace=True)

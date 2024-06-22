@@ -69,7 +69,7 @@ with tab1:
             if button_stop:
                 test.kill()
                 if check_score():
-                    os.remove('./Dashboard/results/result.csv')
+                    os.remove('./Dashboard/result.csv')
                 st.rerun()
 
 

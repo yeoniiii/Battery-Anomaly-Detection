@@ -22,6 +22,6 @@ def calculate_score(serial_num):
     X, y, X_index, y_index = rolling_window_sequences(X, index, window_size = 10,   target_size = 1, step_size =1, target_column=0)
     y_hat, critic = predict(X)
     final_result = anomaly(X, y_hat, critic, X_index)
-    final_result.to_csv('./Dashboard/results/result.csv')
+    final_result.to_csv('./Dashboard/result.csv')
 
 calculate_score(serial_num)
