@@ -133,7 +133,7 @@ with tab2:
 
                     time.sleep(.05)
         
-        time.sleep(2)
+        time.sleep(10)
         # if test and test.poll() is not None:
         if check_score():
             test = None
