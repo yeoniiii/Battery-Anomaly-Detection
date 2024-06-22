@@ -57,7 +57,7 @@ with tab1:
         
         if button_start:
             st.session_state.test_running = True
-            command = ["python3", "./Modeling/run.py", str(slider_value)]
+            command = ["python", "./Modeling/run.py", str(slider_value)]
             test = subprocess.Popen(command)
 
             sidebar_before.empty()
