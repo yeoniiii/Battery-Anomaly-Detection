@@ -13,6 +13,9 @@ import subprocess
 import time
 import os
 from libraries.load_data import load_test_df
+from libraries.check_output import check_score
+import warnings
+warnings.filterwarnings("ignore")
 
 
 
@@ -65,22 +68,10 @@ with tab1:
             button_stop = st.button("Stop", disabled=st.session_state.test_finished)
             if button_stop:
                 test.kill()
+                if check_score():
+                    os.remove('./Dashboard/results/result.csv')
                 st.rerun()
-            
-            time.sleep(6)
-            if test and test.poll() is not None:
-                test = None
-                st.session_state.test_finished = True
-                st.session_state.test_running = False
 
-                sidebar_ing.empty()
-                message_ing1.empty()
-                message_ing2.empty()
-
-                st.success("시험이 완료되었습니다! 다음 탭에서 진행 상황을 확인하세요.")
-                sidebar_end = st.sidebar.success(f"{slider_value}번 배터리팩 충∙방전 시험이 완료되었습니다.")
-
-            
 
 with tab2:
     st.header("Battery Pack Test Progress Chart")
@@ -140,4 +131,18 @@ with tab2:
                         plt.ylim(min(TE.min() * 0.9), max(TE.max()) * 1.1)
                         st.pyplot(fig2)
 
-                    time.sleep(.1)
+                    time.sleep(.05)
+        
+        time.sleep(2)
+        # if test and test.poll() is not None:
+        if check_score():
+            test = None
+            st.session_state.test_finished = True
+            st.session_state.test_running = False
+
+            sidebar_ing.empty()
+            message_ing1.empty()
+            message_ing2.empty()
+
+            st.success("시험이 완료되었습니다! 다음 탭에서 진행 상황을 확인하세요.")
+            sidebar_end = st.sidebar.success(f"{slider_value}번 배터리팩 충∙방전 시험이 완료되었습니다.")

@@ -9,6 +9,8 @@ import os
 from PIL import Image
 from libraries.check_output import check_score
 from libraries.load_data import load_img
+import warnings
+warnings.filterwarnings("ignore")
 
 
 
@@ -36,5 +38,5 @@ st.markdown("""
             </small></p>""", unsafe_allow_html=True)
 st.caption("")
 
-# if check_score():
-#     os.remove('./Dashboard/results/score.csv')
+if check_score():
+    os.remove('./Dashboard/results/result.csv')

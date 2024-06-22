@@ -8,6 +8,8 @@ st.set_page_config(
 
 from libraries.load_data import *
 from libraries.plotting import plot_defective
+import warnings
+warnings.filterwarnings("ignore")
 
 
 
