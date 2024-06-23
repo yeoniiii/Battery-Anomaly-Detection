@@ -59,9 +59,8 @@ with tab1:
             st.session_state.test_running = True
             
             command = ["python", os.getcwd() + "/Modeling/run.py", str(slider_value)]
-            test = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            stdout, stderr = test.communicate()
-
+            test = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            
             sidebar_before.empty()
             sidebar_ing = st.sidebar.info(f"{slider_value}번 배터리팩 충∙방전 시험 중입니다.")
             message_ing1 = st.info("시험을 진행 중입니다.")
@@ -135,8 +134,8 @@ with tab2:
 
                     time.sleep(.05)
         
-        time.sleep(5)
         # if test and test.poll() is not None:
+        stdout, stderr = test.communicate()
         if check_score():
             test = None
             st.session_state.test_finished = True
