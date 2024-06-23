@@ -13,6 +13,7 @@ import subprocess
 from io import StringIO
 import time
 import os
+import sys
 from libraries.load_data import load_test_df
 from libraries.check_output import check_score
 import warnings
@@ -59,7 +60,7 @@ with tab1:
         if button_start:
             st.session_state.test_running = True
             
-            command = ["python", os.getcwd() + "/Modeling/run.py", str(slider_value)]
+            command = [f"{sys.executable}", os.getcwd() + "/Modeling/run.py", str(slider_value)]
             test = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             
             sidebar_before.empty()
@@ -137,7 +138,6 @@ with tab2:
         
         # if test and test.poll() is not None:
         stdout, stderr = test.communicate()
-        st.write(stdout)
         b = StringIO(stdout.decode('utf-8'))
         result = pd.read_csv(b, sep='\s+')
         result.to_csv(os.getcwd() + '/Dashboard/result.csv', sep=',')
