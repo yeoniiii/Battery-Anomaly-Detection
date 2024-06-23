@@ -1,5 +1,6 @@
 import os
 import sys
+!pip install pandas
 import pandas as pd
 from preprocessing import *
 from preprocessing2 import *
@@ -22,7 +23,7 @@ def calculate_score(serial_num):
     X, y, X_index, y_index = rolling_window_sequences(X, index, window_size = 10,   target_size = 1, step_size =1, target_column=0)
     y_hat, critic = predict(X)
     final_result = anomaly(X, y_hat, critic, X_index)
-    # final_result.to_csv(os.getcwd() + '/Dashboard/result.csv')
-    open(os.getcwd() + '/Dashboard/result.csv', 'w').write(final_result.to_csv())
+    final_result.to_csv(os.getcwd() + '/Dashboard/result.csv')
+    # open(os.getcwd() + '/Dashboard/result.csv', 'w').write(final_result.to_csv())
 
 calculate_score(serial_num)
