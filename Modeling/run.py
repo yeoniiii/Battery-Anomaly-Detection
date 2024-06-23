@@ -1,12 +1,12 @@
 import os
 import sys
-!pip install pandas
-import pandas as pd
+import subprocess
+subprocess.run(["python3", "-m pip install -r requirements.txt"])
 from preprocessing import *
 from preprocessing2 import *
 from Inference1 import *
-
-serial_num = sys.argv[1]
+import warnings
+warnings.filterwarnings("ignore")
 
 def calculate_score(serial_num):
 
@@ -26,4 +26,6 @@ def calculate_score(serial_num):
     final_result.to_csv(os.getcwd() + '/Dashboard/result.csv')
     # open(os.getcwd() + '/Dashboard/result.csv', 'w').write(final_result.to_csv())
 
+
+serial_num = sys.argv[1]
 calculate_score(serial_num)
