@@ -1,6 +1,6 @@
 import os
 import sys
-import pandas as pd
+# import pandas as pd
 from preprocessing import *
 from preprocessing2 import *
 from Inference1 import *
