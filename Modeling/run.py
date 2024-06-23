@@ -1,8 +1,5 @@
 import os
 import sys
-import subprocess
-subprocess.run(["python3", "-m pip install -r requirements.txt"])
-subprocess.run(["pip", "list"])
 from preprocessing import *
 from preprocessing2 import *
 from Inference1 import *
