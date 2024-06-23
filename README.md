@@ -6,6 +6,15 @@
 
 <h3 align='center'> <a href="https://battery-anomaly-detection.streamlit.app">🪫Dashboard🔋</h3>
 
+<br><br><br><br>
+
+
+  
+![Home](https://github.com/yeoniiii/Battery-Anomaly-Detection/assets/76769871/ffe83368-1987-4713-b1da-28b8a225f35a)
+
+
+
+## ⚙️ MLOps Pipeline
 ```
 ├── Dashboard
 │   ├── Home.py
