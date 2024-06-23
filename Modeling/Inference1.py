@@ -17,17 +17,16 @@ from Anomaly import *
 
 
 def predict(X):
-    folder_dir = os.getcwd() + '/Modeling/'
+    folder_dir = os.getcwd() + '/Modeling/models/'
     encoder = load_model(folder_dir + 'encoder_model.keras')
     generator = load_model(folder_dir + 'generator_model.keras')
     critic_x = load_model(folder_dir + 'critic_x_model.keras')
     critic_z = load_model(folder_dir + 'critic_z_model.keras')
 
-
     X = X.reshape((-1, 10, 3))
-    z_ = encoder.predict(X)
-    y_hat = generator.predict(z_)
-    critic = critic_x.predict(X)
+    z_ = encoder.predict(X, verbose=0)
+    y_hat = generator.predict(z_, verbose=0)
+    critic = critic_x.predict(X, verbose=0)
 
     return y_hat, critic
 
@@ -48,7 +47,7 @@ def anomaly(X, y_hat, critic, X_index):
     Z_score1 = (final_scores-avg) / sigma
     pred_bin=[0]*pred_length
     for i in range(len(anomalies)):
-        print( anomalies[i][0], anomalies[i][1])
+        # print( anomalies[i][0], anomalies[i][1])
         for k in range(anomalies[i][0]-1, anomalies[i][1]):
             pred_bin[k]=1
 

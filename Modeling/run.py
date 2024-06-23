@@ -3,6 +3,7 @@ import sys
 from preprocessing import *
 from preprocessing2 import *
 from Inference1 import *
+pd.set_option('display.max_rows', None)
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -21,8 +22,10 @@ def calculate_score(serial_num):
     X, y, X_index, y_index = rolling_window_sequences(X, index, window_size = 10,   target_size = 1, step_size =1, target_column=0)
     y_hat, critic = predict(X)
     final_result = anomaly(X, y_hat, critic, X_index)
-    final_result.to_csv(os.getcwd() + '/Dashboard/result.csv')
+    print(final_result)
+    # final_result.to_csv(os.getcwd() + '/Dashboard/result.csv')
     # open(os.getcwd() + '/Dashboard/result.csv', 'w').write(final_result.to_csv())
+    # return final_result
 
 
 serial_num = sys.argv[1]

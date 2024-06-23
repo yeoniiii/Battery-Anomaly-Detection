@@ -40,7 +40,7 @@ class Anomaly(object):
         best_z = min_z
         best_cost = np.inf
         for z in range(min_z, max_z):
-            best = fmin(self._z_cost, z, args=(errors, mean, std), full_output=True, disp=False)
+            best = np.fmin(self._z_cost, z, args=(errors, mean, std), full_output=True, disp=False)
             z, cost = best[0:2]
             if cost < best_cost:
                 best_z = z[0]
@@ -165,9 +165,9 @@ window_step_size_portion=None, min_percent=0.1, anomaly_padding=50, lower_thresh
         sequences =self._merge_sequences(sequences)
         anomalies = list()
         for start, stop, score in sequences:
-            print("start", start)
-            print("stop", stop)
-            print("score", score)
+            # print("start", start)
+            # print("stop", stop)
+            # print("score", score)
             anomalies.append([index[int(start)], index[int(stop)], score])
         return anomalies
 

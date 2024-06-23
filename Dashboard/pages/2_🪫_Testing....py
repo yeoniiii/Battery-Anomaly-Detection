@@ -10,6 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import subprocess
+from io import StringIO
 import time
 import os
 from libraries.load_data import load_test_df
@@ -136,6 +137,10 @@ with tab2:
         
         # if test and test.poll() is not None:
         stdout, stderr = test.communicate()
+        b = StringIO(stdout.decode('utf-8'))
+        result = pd.read_csv(b, sep='\s+')
+        result.to_csv(os.getcwd() + '/Dashboard/result.csv', sep=',')
+        
         if check_score():
             test = None
             st.session_state.test_finished = True
