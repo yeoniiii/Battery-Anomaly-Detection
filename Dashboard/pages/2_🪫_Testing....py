@@ -137,10 +137,11 @@ with tab2:
         
         # if test and test.poll() is not None:
         stdout, stderr = test.communicate()
+        st.write(stdout)
         b = StringIO(stdout.decode('utf-8'))
         result = pd.read_csv(b, sep='\s+')
         result.to_csv(os.getcwd() + '/Dashboard/result.csv', sep=',')
-        
+
         if check_score():
             test = None
             st.session_state.test_finished = True
