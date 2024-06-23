@@ -59,7 +59,7 @@ with tab1:
             st.session_state.test_running = True
             
             command = ["python", os.getcwd() + "/Modeling/run.py", str(slider_value)]
-            test = subprocess.Popen(command, shell=True)
+            test = subprocess.Popen(command, capture_output=True, shell=True)
 
             sidebar_before.empty()
             sidebar_ing = st.sidebar.info(f"{slider_value}번 배터리팩 충∙방전 시험 중입니다.")
