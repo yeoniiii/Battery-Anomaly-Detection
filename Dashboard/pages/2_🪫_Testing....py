@@ -71,7 +71,7 @@ with tab1:
                 test.kill()
                 if check_score():
                     os.remove('./Dashboard/result.csv')
-                st.rerun()
+                # st.rerun()
 
 
 with tab2:
