@@ -57,7 +57,8 @@ with tab1:
         
         if button_start:
             st.session_state.test_running = True
-            command = ["python", "./Modeling/run.py", str(slider_value)]
+            
+            command = ["python", os.getcwd() + "/Modeling/run.py", str(slider_value)]
             test = subprocess.Popen(command)
 
             sidebar_before.empty()
@@ -133,7 +134,7 @@ with tab2:
 
                     time.sleep(.05)
         
-        time.sleep(10)
+        time.sleep(5)
         # if test and test.poll() is not None:
         if check_score():
             test = None
